@@ -36,7 +36,6 @@
                         'float-delayed': 'float 5s ease-in-out 2.5s infinite',
                         'spin-slow': 'spin 12s linear infinite',
                         'pulse-glow': 'pulseGlow 3s infinite alternate',
-                        'crown-shine': 'crownShine 2s ease-in-out infinite',
                         'mario-drive': 'marioDrive 8s linear infinite'
                     },
                     keyframes: {
@@ -48,13 +47,13 @@
                             '0%': { opacity: '0.3', filter: 'blur(20px)' },
                             '100%': { opacity: '0.8', filter: 'blur(35px)' },
                         },
-                        crownShine: {
-                            '0%, 100%': { filter: 'drop-shadow(0 0 10px #f59e0b)' },
-                            '50%': { filter: 'drop-shadow(0 0 22px #fbbf24)' }
-                        },
                         marioDrive: {
-                            '0%': { transform: 'translateX(-100%)' },
+                            '0%': { transform: 'translateX(-120%)' },
                             '100%': { transform: 'translateX(100vw)' }
+                        },
+                        kartBounce: {
+                            '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+                            '50%': { transform: 'translateY(-2px) rotate(2deg)' }
                         }
                     }
                 }
@@ -63,11 +62,29 @@
     </script>
 
     <style>
+        .mario-kart-sprite {
+            animation: kartBounce 0.4s ease-in-out infinite;
+            filter: drop-shadow(0 3px 6px rgba(239, 68, 68, 0.6)) drop-shadow(0 0 10px rgba(245, 158, 11, 0.4));
+        }
+
         body {
             background-color: #0a0b10;
             color: #f3f4f6;
             overflow-x: hidden;
             font-family: 'Inter', sans-serif;
+        }
+
+        /* Clean transparent logo styling with neon glow drop-shadow */
+        .brand-logo-img {
+            background: transparent !important;
+            mix-blend-mode: normal;
+            filter: drop-shadow(0 0 15px rgba(168, 85, 247, 0.75)) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.8));
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .brand-logo-img:hover {
+            filter: drop-shadow(0 0 22px rgba(192, 132, 252, 0.95)) drop-shadow(0 4px 12px rgba(124, 58, 237, 0.6));
+            transform: scale(1.04);
         }
 
         .perspective-1000 {
@@ -216,15 +233,13 @@
     <!-- DESKTOP HEADER NAVBAR -->
     <header class="fixed top-0 left-0 right-0 z-50 hidden md:block pt-4 px-6">
         <div class="max-w-7xl mx-auto">
-            <nav class="glass-nav rounded-2xl px-5 py-3 flex items-center justify-between gap-4 transition-all duration-300">
-                <!-- Brand Logo: LazyMonarch -->
-                <a href="#home" class="flex items-center gap-3 group shrink-0">
-                    <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-royal-accent via-royal-pink to-royal-gold p-[2px] shadow-lg shadow-royal-accent/40 group-hover:scale-105 transition-transform duration-300 preserve-3d">
-                        <div class="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center">
-                            <i class="fa-solid fa-crown text-royal-gold text-xl animate-crown-shine group-hover:rotate-12 transition-transform"></i>
-                        </div>
-                    </div>
-                    <span class="text-2xl font-black tracking-tight text-white">LAZY<span class="text-gradient-gold">MONARCH</span></span>
+            <nav class="glass-nav rounded-2xl px-5 py-2.5 flex items-center justify-between gap-4 transition-all duration-300">
+                <!-- Transparent PNG Logo -->
+                <a href="#home" class="flex items-center shrink-0 group bg-transparent">
+                    <img src="download.png" 
+                         alt="LAZYMONARCH Logo" 
+                         class="brand-logo-img h-12 w-auto object-contain max-w-[210px] bg-transparent"
+                         onerror="this.onerror=null; this.src='https://placehold.co/220x60/0a0b10/a855f7?text=LAZY+MONARCH';">
                 </a>
 
                 <!-- 3D Navigation Links -->
@@ -308,19 +323,15 @@
         </div>
     </header>
 
-    <!-- MOBILE TOP HEADER (Redesigned with Clear Logo, Animated Mario Kart Track & Searchbar) -->
+    <!-- MOBILE TOP HEADER -->
     <header class="fixed top-0 left-0 right-0 z-40 block md:hidden glass-panel border-b border-white/15 shadow-2xl pt-2 pb-3 px-4">
-        <!-- Top Row: Clear Brand Name & User Profile Button -->
         <div class="flex items-center justify-between mb-2">
-            <a href="#home" class="flex items-center gap-2">
-                <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-royal-accent via-royal-pink to-royal-gold p-[2px] shadow-md shadow-royal-gold/30">
-                    <div class="w-full h-full bg-slate-950 rounded-[9px] flex items-center justify-center">
-                        <i class="fa-solid fa-crown text-royal-gold text-sm animate-crown-shine"></i>
-                    </div>
-                </div>
-                <span class="text-xl font-black text-white tracking-wider drop-shadow-md">
-                    LAZY<span class="text-gradient-gold">MONARCH</span>
-                </span>
+            <a href="#home" class="flex items-center bg-transparent">
+                <!-- Transparent PNG Logo Mobile -->
+                <img src="download.png" 
+                     alt="LAZYMONARCH Logo" 
+                     class="brand-logo-img h-10 w-auto object-contain max-w-[170px] bg-transparent"
+                     onerror="this.onerror=null; this.src='https://placehold.co/180x50/0a0b10/a855f7?text=LAZY+MONARCH';">
             </a>
 
             <!-- Quick Sign In / Profile status on mobile header -->
@@ -328,21 +339,6 @@
                 <i class="fa-solid fa-user-ninja text-xs text-royal-cyan"></i>
                 <span id="mobileTopUserText">Sign In</span>
             </button>
-        </div>
-
-        <!-- Left to Right Animated Mario Kart Track Container -->
-        <div class="relative w-full h-6 my-1 bg-slate-950/80 rounded-full border border-purple-500/30 overflow-hidden shadow-inner flex items-center">
-            <!-- Road Line -->
-            <div class="absolute inset-x-0 h-[2px] bg-dashed border-b border-dashed border-slate-700/80 top-1/2 -translate-y-1/2"></div>
-            
-            <!-- Animated Mario Kart sprite/icon -->
-            <div class="absolute top-0.5 animate-mario-drive flex items-center gap-1 z-10">
-                <!-- Mario Kart Icon -->
-                <div class="w-5 h-5 rounded-md bg-red-600 text-white flex items-center justify-center text-[10px] shadow-sm shadow-red-500/50">
-                    <i class="fa-solid fa-car-side"></i>
-                </div>
-                <span class="text-[9px] font-black text-amber-400 bg-black/60 px-1 rounded uppercase tracking-tighter border border-amber-500/30">Mario</span>
-            </div>
         </div>
 
         <!-- Mobile Integrated Live Search Bar -->
@@ -734,9 +730,11 @@
     <!-- FOOTER -->
     <footer class="mt-16 border-t border-slate-800/80 bg-slate-950 py-10 text-slate-500 text-xs text-center relative z-10">
         <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
-            <div class="flex items-center gap-2">
-                <i class="fa-solid fa-crown text-royal-gold text-base"></i>
-                <span class="text-white font-black text-sm tracking-tight">LAZYMONARCH</span>
+            <div class="flex items-center gap-3">
+                <img src="download.png" 
+                     alt="LAZYMONARCH" 
+                     class="brand-logo-img h-8 w-auto object-contain bg-transparent"
+                     onerror="this.onerror=null; this.src='https://placehold.co/120x35/0a0b10/a855f7?text=LAZY+MONARCH';">
                 <span>© 2026 Esports & Anime Merch Realm.</span>
             </div>
             <div class="flex gap-6 text-[11px]">
@@ -749,7 +747,6 @@
     </footer>
 
     <script>
-        /* DATABASE: Gaming Tournaments & Anime Merch Items */
         const TOURNAMENTS = [
             {
                 id: 't1',
@@ -968,7 +965,6 @@
                 clearBtn.classList.remove('hidden');
                 if (mobClearBtn) mobClearBtn.classList.remove('hidden');
 
-                // Search across both Tournaments and Products
                 const matchedTournaments = TOURNAMENTS.filter(t => 
                     t.name.toLowerCase().includes(cleanQuery) || 
                     t.desc.toLowerCase().includes(cleanQuery)
@@ -982,14 +978,12 @@
                 const totalMatched = matchedTournaments.length + matchedProducts.length;
                 searchResultCount.innerText = `${totalMatched} found`;
 
-                // Update Main Product Section with Search Results
                 renderShop(matchedProducts);
                 renderTournaments(matchedTournaments);
 
                 searchStatus.classList.remove('hidden');
                 searchQueryTerm.innerText = `"${query}"`;
 
-                // Dropdown Overlay Display
                 if (totalMatched > 0) {
                     let dropdownHTML = '';
                     
@@ -1057,7 +1051,7 @@
             filterShop(currentShopFilter);
         }
 
-        /* TOURNAMENT & SHOP CATEGORY FILTERS */
+        /* CATEGORY FILTERS */
         function filterTournaments(cat, btn) {
             currentTournamentFilter = cat;
             if (btn) {
