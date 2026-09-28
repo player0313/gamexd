@@ -1,173 +1,1356 @@
 <!DOCTYPE html>
- <html lang="en">
- <head>
-   <meta charset="UTF-8" />
-   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-   <title>GameXD Portal</title>
- 
-   <!-- Fantasy Bold Font -->
-   <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
- 
-   <style>
-     * {
-       margin: 0;
-       padding: 0;
-       box-sizing: border-box;
-     }
- 
-     body, html {
-       height: 100%;
-       font-family: 'UnifrakturCook', cursive;
-       overflow: hidden;
-       background: #000;
-     }
- 
-     .portal-container {
-       position: relative;
-       width: 100%;
-       height: 100vh;
-     }
- 
-     .bg-video {
-       width: 100%;
-       height: 100%;
-       object-fit: cover;
-       position: absolute;
-       z-index: 1;
-     }
- 
-     .overlay {
-       position: absolute;
-       background-color: rgba(0, 0, 0, 0.6);
-       width: 100%;
-       height: 100%;
-       z-index: 2;
-     }
- 
-     .portal-content {
-       position: absolute;
-       top: 50%;
-       left: 50%;
-       transform: translate(-50%, -50%);
-       text-align: center;
-       color: white;
-       z-index: 3;
-     }
- 
-     .fade-in-text {
-       font-size: 3em;
-       font-weight: bold;
-       opacity: 0;
-       transform: translateY(-30px);
-       animation: slideFadeIn 2s ease-out forwards;
-       animation-delay: 0.5s;
-     }
- 
-     @keyframes slideFadeIn {
-       0% {
-         opacity: 0;
-         transform: translateY(-30px);
-       }
-       100% {
-         opacity: 1;
-         transform: translateY(0);
-       }
-     }
- 
-     .enter-btn {
-       display: inline-block;
-       margin-top: 30px;
-       padding: 12px 30px;
-       background: #fff;
-       color: #000;
-       font-size: 1.2em;
-       text-decoration: none;
-       border-radius: 14px;
-       transition: 0.4s ease;
-       opacity: 0;
-       animation: fadeIn 2s ease-in forwards;
-       animation-delay: 2.5s;
-       border: 2px solid #000;
-       font-weight: bold;
-     }
- 
-     .enter-btn:hover {
-       background: red;
-       color: white;
-       box-shadow: 0 0 20px black;
-       transform: scale(1.05);
-     }
- 
-     @keyframes fadeIn {
-       to {
-         opacity: 1;
-       }
-     }
- 
- .enter-btn {
-   display: inline-block;
-   margin-top: 30px;
-   text-align: center;
-   padding: 12px 40px;
-   background: #fff;
-   color: #000;
-   font-size: 1.6em;
-   font-size: 15px;
-   text-decoration: none;
-   border-radius: 14px;
-   transition: 0.4s ease;
-   opacity: 0;
-   animation: fadeIn 2s ease-in forwards;
-   animation-delay: 2.5s;
-   border: 2px solid #000;
-   font-weight: bold;
-   white-space: nowrap; /* keeps text in one line */
-   max-width: 90vw;
-   overflow: hidden;
-   text-overflow: ellipsis;
- }
-   @media (max-width: 480px) {
-   .enter-btn {
-     font-size: 4.5vw;
-     padding: 12px 20px;
-   }
-   }
-   </style>
- </head>
- <body>
-   <div class="portal-container">
- 
-     <!-- Invisible background music -->
-     <audio autoplay loop id="bg-music" style="display: none;">
-       <source src="keys-of-moon-lonesome-journey.mp3" type="audio/mpeg" />
-     </audio>
- 
-     <!-- Rest of your portal content -->
- 
-     <video autoplay muted loop class="bg-video">
-       <source src="Video.Guru_20250410_183526920.mp4" type="video/mp4" />
-       Your browser does not support the video tag.
-     </video>
- 
-     <div class="overlay"></div>
- 
-     <div class="portal-content">
-       <h1 class="fade-in-text">Welcome to GameXD</h1>
-       <a href="homepage.html" class="enter-btn">Enter the Portal</a>
-     </div>
-   </div>
- 
-   <script>
-     // Fade-out transition before navigating
-     document.querySelector('.enter-btn').addEventListener('click', function (e) {
-       e.preventDefault();
-       document.querySelector('.portal-container').style.transition = 'opacity 1s ease';
-       document.querySelector('.portal-container').style.opacity = '0';
-       setTimeout(() => {
-         window.location.href = this.href;
-       }, 1000);
-     });
-   </script>
- 
- </body>
- </html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LazyMonarch | Gaming Tournaments & Anime Merch Store</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome 6.4 CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        royal: {
+                            dark: '#0a0b10',
+                            card: '#121420',
+                            accent: '#7c3aed',
+                            glow: '#8b5cf6',
+                            cyan: '#06b6d4',
+                            gold: '#f59e0b',
+                            pink: '#ec4899',
+                            emerald: '#10b981'
+                        }
+                    },
+                    animation: {
+                        'float': 'float 5s ease-in-out infinite',
+                        'float-delayed': 'float 5s ease-in-out 2.5s infinite',
+                        'spin-slow': 'spin 12s linear infinite',
+                        'pulse-glow': 'pulseGlow 3s infinite alternate',
+                        'crown-shine': 'crownShine 2s ease-in-out infinite',
+                        'mario-drive': 'marioDrive 8s linear infinite'
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+                            '50%': { transform: 'translateY(-10px) rotate(1.5deg)' },
+                        },
+                        pulseGlow: {
+                            '0%': { opacity: '0.3', filter: 'blur(20px)' },
+                            '100%': { opacity: '0.8', filter: 'blur(35px)' },
+                        },
+                        crownShine: {
+                            '0%, 100%': { filter: 'drop-shadow(0 0 10px #f59e0b)' },
+                            '50%': { filter: 'drop-shadow(0 0 22px #fbbf24)' }
+                        },
+                        marioDrive: {
+                            '0%': { transform: 'translateX(-100%)' },
+                            '100%': { transform: 'translateX(100vw)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0a0b10;
+            color: #f3f4f6;
+            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .perspective-1000 {
+            perspective: 1000px;
+        }
+        .preserve-3d {
+            transform-style: preserve-3d;
+        }
+
+        .glass-panel {
+            background: rgba(18, 20, 32, 0.75);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+        }
+
+        .glass-nav {
+            background: rgba(12, 14, 24, 0.88);
+            backdrop-filter: blur(22px);
+            -webkit-backdrop-filter: blur(22px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 
+                0 15px 35px -5px rgba(0, 0, 0, 0.6),
+                0 0 25px rgba(124, 58, 237, 0.25),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        /* 3D ICON BADGE DESIGN */
+        .icon-3d {
+            position: relative;
+            transform-style: preserve-3d;
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 
+                0 6px 12px -2px rgba(0, 0, 0, 0.6),
+                inset 0 1px 2px rgba(255, 255, 255, 0.4),
+                0 4px 0 #2e1065;
+        }
+
+        .icon-3d-hover:hover .icon-3d {
+            transform: translateZ(16px) translateY(-5px) rotateX(15deg) rotateY(-10deg);
+            box-shadow: 
+                0 15px 25px -5px rgba(124, 58, 237, 0.6),
+                inset 0 1px 3px rgba(255, 255, 255, 0.8),
+                0 8px 0 #4c1d95;
+        }
+
+        .nav-3d-item {
+            position: relative;
+            transform-style: preserve-3d;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .nav-3d-item:hover {
+            transform: translateY(-3px) scale(1.03);
+        }
+
+        /* Mobile Arc Navigation Active Indicator */
+        .mobile-nav-item.active .mobile-icon-wrapper {
+            transform: translateY(-20px) scale(1.15) rotateX(15deg);
+            background: linear-gradient(135deg, #7c3aed, #06b6d4);
+            color: #ffffff;
+            box-shadow: 
+                0 14px 28px rgba(124, 58, 237, 0.8),
+                0 0 0 4px #0a0b10;
+        }
+
+        .mobile-nav-item .mobile-icon-wrapper {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* 3D Tactile Buttons */
+        .btn-3d {
+            transition: all 0.15s ease;
+            box-shadow: 
+                0 6px 0px #4c1d95,
+                0 12px 20px rgba(0, 0, 0, 0.5);
+        }
+        .btn-3d:active {
+            transform: translateY(4px);
+            box-shadow: 
+                0 2px 0px #4c1d95,
+                0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .btn-3d-gold {
+            transition: all 0.15s ease;
+            box-shadow: 
+                0 6px 0px #b45309,
+                0 12px 20px rgba(245, 158, 11, 0.3);
+        }
+        .btn-3d-gold:active {
+            transform: translateY(4px);
+            box-shadow: 
+                0 2px 0px #b45309,
+                0 4px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Gradient Typography */
+        .text-gradient {
+            background: linear-gradient(135deg, #ffffff 20%, #c084fc 50%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .text-gradient-gold {
+            background: linear-gradient(135deg, #fef08a 0%, #f59e0b 50%, #d97706 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .tilt-card {
+            transform-style: preserve-3d;
+            transition: transform 0.15s ease-out, box-shadow 0.3s ease;
+        }
+
+        #bgCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0b10;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e2030;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #7c3aed;
+        }
+    </style>
+</head>
+<body class="relative min-h-screen pb-28 md:pb-0 selection:bg-royal-accent selection:text-white">
+
+    <canvas id="bgCanvas"></canvas>
+
+    <!-- DESKTOP HEADER NAVBAR -->
+    <header class="fixed top-0 left-0 right-0 z-50 hidden md:block pt-4 px-6">
+        <div class="max-w-7xl mx-auto">
+            <nav class="glass-nav rounded-2xl px-5 py-3 flex items-center justify-between gap-4 transition-all duration-300">
+                <!-- Brand Logo: LazyMonarch -->
+                <a href="#home" class="flex items-center gap-3 group shrink-0">
+                    <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-royal-accent via-royal-pink to-royal-gold p-[2px] shadow-lg shadow-royal-accent/40 group-hover:scale-105 transition-transform duration-300 preserve-3d">
+                        <div class="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center">
+                            <i class="fa-solid fa-crown text-royal-gold text-xl animate-crown-shine group-hover:rotate-12 transition-transform"></i>
+                        </div>
+                    </div>
+                    <span class="text-2xl font-black tracking-tight text-white">LAZY<span class="text-gradient-gold">MONARCH</span></span>
+                </a>
+
+                <!-- 3D Navigation Links -->
+                <div class="flex items-center gap-1.5 perspective-1000">
+                    <!-- Home -->
+                    <a href="#home" class="nav-3d-item icon-3d-hover px-3 py-1.5 rounded-xl flex items-center gap-2 text-xs font-semibold text-slate-200 hover:text-white">
+                        <div class="icon-3d w-8 h-8 rounded-lg bg-purple-950 border border-purple-500/40 flex items-center justify-center text-purple-400">
+                            <i class="fa-solid fa-house text-xs"></i>
+                        </div>
+                        <span>Home</span>
+                    </a>
+
+                    <!-- Tournaments -->
+                    <a href="#tournaments" class="nav-3d-item icon-3d-hover px-3 py-1.5 rounded-xl flex items-center gap-2 text-xs font-semibold text-slate-300 hover:text-white">
+                        <div class="icon-3d w-8 h-8 rounded-lg bg-amber-950 border border-amber-500/40 flex items-center justify-center text-royal-gold">
+                            <i class="fa-solid fa-trophy text-xs"></i>
+                        </div>
+                        <span>Tournaments</span>
+                    </a>
+
+                    <!-- Shop (Gaming & Anime) -->
+                    <a href="#shop" class="nav-3d-item icon-3d-hover px-3 py-1.5 rounded-xl flex items-center gap-2 text-xs font-semibold text-slate-300 hover:text-white">
+                        <div class="icon-3d w-8 h-8 rounded-lg bg-cyan-950 border border-cyan-500/40 flex items-center justify-center text-royal-cyan">
+                            <i class="fa-solid fa-bag-shopping text-xs"></i>
+                        </div>
+                        <span>Shop</span>
+                    </a>
+
+                    <!-- VIP Membership -->
+                    <a href="#membership" class="nav-3d-item icon-3d-hover px-3 py-1.5 rounded-xl flex items-center gap-2 text-xs font-semibold text-slate-300 hover:text-white">
+                        <div class="icon-3d w-8 h-8 rounded-lg bg-pink-950 border border-pink-500/40 flex items-center justify-center text-royal-pink">
+                            <i class="fa-solid fa-crown text-xs"></i>
+                        </div>
+                        <span>Membership</span>
+                    </a>
+                </div>
+
+                <!-- INTEGRATED NAVBAR SEARCH BAR -->
+                <div class="relative flex-1 max-w-xs mx-2">
+                    <div class="relative flex items-center">
+                        <input type="text" id="desktopSearchInput" oninput="handleSearch(this.value)" placeholder="Search tournaments, stickers, gear..." 
+                            class="w-full pl-10 pr-9 py-2 rounded-xl bg-slate-900/90 border border-slate-700/80 text-xs text-white placeholder-slate-400 focus:outline-none focus:border-royal-accent focus:ring-2 focus:ring-royal-accent/30 transition-all">
+                        <div class="absolute left-3 text-slate-400 text-xs pointer-events-none">
+                            <i class="fa-solid fa-magnifying-glass text-royal-cyan"></i>
+                        </div>
+                        <button id="clearSearchBtn" onclick="clearSearch()" class="hidden absolute right-3 text-slate-400 hover:text-white text-xs">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+
+                    <!-- SEARCH RESULTS OVERLAY MODAL -->
+                    <div id="searchDropdown" class="hidden absolute top-full left-0 right-0 mt-3 glass-panel rounded-2xl p-3 border border-white/15 shadow-2xl z-50 max-h-80 overflow-y-auto">
+                        <div class="text-[10px] uppercase font-bold tracking-wider text-slate-400 px-2 mb-2 flex items-center justify-between">
+                            <span>Live Monarch Search</span>
+                            <span id="searchResultCount" class="text-royal-cyan font-mono">0 found</span>
+                        </div>
+                        <div id="searchResultsList" class="space-y-1">
+                            <!-- JS Dynamically Injects Search Items -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Actions: Shopping Cart & Auth Trigger -->
+                <div class="flex items-center gap-3 shrink-0">
+                    <button onclick="toggleCartDrawer()" class="icon-3d-hover relative w-10 h-10 flex items-center justify-center">
+                        <div class="icon-3d w-10 h-10 rounded-xl bg-purple-950/90 border border-purple-500/40 flex items-center justify-center text-purple-300">
+                            <i class="fa-solid fa-cart-shopping text-xs"></i>
+                        </div>
+                        <span id="cartBadge" class="absolute -top-1 -right-1 w-5 h-5 bg-royal-accent text-white text-[10px] font-black rounded-full flex items-center justify-center border border-slate-950">0</span>
+                    </button>
+
+                    <!-- Auth State Button -->
+                    <div id="authBtnContainer">
+                        <button onclick="openAuthModal('login')" class="btn-3d px-4 py-2 rounded-xl bg-gradient-to-r from-royal-accent to-indigo-600 text-white font-bold text-xs flex items-center gap-2">
+                            <i class="fa-solid fa-right-to-bracket text-xs"></i>
+                            <span>Sign In</span>
+                        </button>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MOBILE TOP HEADER (Redesigned with Clear Logo, Animated Mario Kart Track & Searchbar) -->
+    <header class="fixed top-0 left-0 right-0 z-40 block md:hidden glass-panel border-b border-white/15 shadow-2xl pt-2 pb-3 px-4">
+        <!-- Top Row: Clear Brand Name & User Profile Button -->
+        <div class="flex items-center justify-between mb-2">
+            <a href="#home" class="flex items-center gap-2">
+                <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-royal-accent via-royal-pink to-royal-gold p-[2px] shadow-md shadow-royal-gold/30">
+                    <div class="w-full h-full bg-slate-950 rounded-[9px] flex items-center justify-center">
+                        <i class="fa-solid fa-crown text-royal-gold text-sm animate-crown-shine"></i>
+                    </div>
+                </div>
+                <span class="text-xl font-black text-white tracking-wider drop-shadow-md">
+                    LAZY<span class="text-gradient-gold">MONARCH</span>
+                </span>
+            </a>
+
+            <!-- Quick Sign In / Profile status on mobile header -->
+            <button onclick="openAuthModal('login')" class="px-3 py-1 rounded-lg bg-slate-900 border border-royal-accent/40 text-[11px] font-bold text-royal-gold flex items-center gap-1.5 shadow-sm">
+                <i class="fa-solid fa-user-ninja text-xs text-royal-cyan"></i>
+                <span id="mobileTopUserText">Sign In</span>
+            </button>
+        </div>
+
+        <!-- Left to Right Animated Mario Kart Track Container -->
+        <div class="relative w-full h-6 my-1 bg-slate-950/80 rounded-full border border-purple-500/30 overflow-hidden shadow-inner flex items-center">
+            <!-- Road Line -->
+            <div class="absolute inset-x-0 h-[2px] bg-dashed border-b border-dashed border-slate-700/80 top-1/2 -translate-y-1/2"></div>
+            
+            <!-- Animated Mario Kart sprite/icon -->
+            <div class="absolute top-0.5 animate-mario-drive flex items-center gap-1 z-10">
+                <!-- Mario Kart Icon -->
+                <div class="w-5 h-5 rounded-md bg-red-600 text-white flex items-center justify-center text-[10px] shadow-sm shadow-red-500/50">
+                    <i class="fa-solid fa-car-side"></i>
+                </div>
+                <span class="text-[9px] font-black text-amber-400 bg-black/60 px-1 rounded uppercase tracking-tighter border border-amber-500/30">Mario</span>
+            </div>
+        </div>
+
+        <!-- Mobile Integrated Live Search Bar -->
+        <div class="relative w-full mt-2">
+            <input type="text" id="mobileSearchInput" oninput="handleSearch(this.value)" placeholder="Search tournaments, anime stickers, gear..." 
+                class="w-full pl-9 pr-8 py-2 rounded-xl bg-slate-900/90 border border-slate-700 text-xs text-white placeholder-slate-400 focus:outline-none focus:border-royal-cyan focus:ring-1 focus:ring-royal-cyan/40">
+            <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-xs text-royal-cyan"></i>
+            <button id="mobileClearSearchBtn" onclick="clearSearch()" class="hidden absolute right-3 top-2.5 text-slate-400 hover:text-white text-xs">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile 3D Bottom Floating Arc Dock with Integrated Cart Button -->
+    <nav class="fixed bottom-3 left-3 right-3 z-50 md:hidden">
+        <div class="glass-nav rounded-2xl px-2 py-1.5 flex items-center justify-around relative border border-white/15 shadow-2xl">
+            <!-- Home -->
+            <a href="#home" onclick="setActiveMobile(this)" class="mobile-nav-item active flex flex-col items-center py-1 px-1.5">
+                <div class="mobile-icon-wrapper w-9 h-9 rounded-xl bg-slate-800/90 border border-slate-700/80 flex items-center justify-center text-purple-400">
+                    <i class="fa-solid fa-house text-xs"></i>
+                </div>
+                <span class="text-[9px] font-semibold text-slate-300 mt-1">Home</span>
+            </a>
+
+            <!-- Tournaments -->
+            <a href="#tournaments" onclick="setActiveMobile(this)" class="mobile-nav-item flex flex-col items-center py-1 px-1.5">
+                <div class="mobile-icon-wrapper w-9 h-9 rounded-xl bg-slate-800/90 border border-slate-700/80 flex items-center justify-center text-slate-400">
+                    <i class="fa-solid fa-trophy text-xs"></i>
+                </div>
+                <span class="text-[9px] font-semibold text-slate-400 mt-1">Arena</span>
+            </a>
+
+            <!-- Shop -->
+            <a href="#shop" onclick="setActiveMobile(this)" class="mobile-nav-item flex flex-col items-center py-1 px-1.5">
+                <div class="mobile-icon-wrapper w-9 h-9 rounded-xl bg-slate-800/90 border border-slate-700/80 flex items-center justify-center text-slate-400">
+                    <i class="fa-solid fa-bag-shopping text-xs"></i>
+                </div>
+                <span class="text-[9px] font-semibold text-slate-400 mt-1">Shop</span>
+            </a>
+
+            <!-- ADD TO CART BUTTON IN BOTTOM NAVBAR -->
+            <button onclick="toggleCartDrawer()" class="mobile-nav-item flex flex-col items-center py-1 px-1.5 relative">
+                <div class="mobile-icon-wrapper w-9 h-9 rounded-xl bg-amber-950/80 border border-amber-500/50 flex items-center justify-center text-royal-gold relative">
+                    <i class="fa-solid fa-cart-shopping text-xs"></i>
+                    <span id="mobileDockCartBadge" class="absolute -top-1.5 -right-1.5 w-4 h-4 bg-royal-accent text-white text-[9px] font-black rounded-full flex items-center justify-center border border-slate-950">0</span>
+                </div>
+                <span class="text-[9px] font-bold text-royal-gold mt-1">Cart</span>
+            </button>
+
+            <!-- Membership -->
+            <a href="#membership" onclick="setActiveMobile(this)" class="mobile-nav-item flex flex-col items-center py-1 px-1.5">
+                <div class="mobile-icon-wrapper w-9 h-9 rounded-xl bg-slate-800/90 border border-slate-700/80 flex items-center justify-center text-slate-400">
+                    <i class="fa-solid fa-crown text-xs"></i>
+                </div>
+                <span class="text-[9px] font-semibold text-slate-400 mt-1">VIP</span>
+            </a>
+        </div>
+    </nav>
+
+    <main class="relative z-10 pt-36 md:pt-36 px-4 md:px-8 max-w-7xl mx-auto">
+        <section id="home" class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center py-6 md:py-12">
+            <!-- Left Hero Text Content -->
+            <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                <!-- Tag Badge -->
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-panel border border-royal-accent/30 text-xs font-semibold text-purple-300 shadow-inner">
+                    <span class="flex h-2 w-2 rounded-full bg-royal-gold animate-ping"></span>
+                    <span>Esports Arena & Anime Merch Haven</span>
+                    <i class="fa-solid fa-crown text-royal-gold text-[11px]"></i>
+                </div>
+
+                <!-- Main Headline -->
+                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-none">
+                    DOMINATE THE <span class="text-gradient-gold">ARENA.</span> <br>
+                    GEAR UP IN <span class="text-gradient">ROYAL STYLE.</span>
+                </h1>
+
+                <p class="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+                    Battle in high-stakes esports gaming tournaments & collect ultra-exclusive holographic anime stickers, deskpads, and gaming accessories.
+                </p>
+
+                <!-- Dual 3D Buttons CTA -->
+                <div class="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                    <a href="#tournaments" class="btn-3d-gold w-full sm:w-auto px-8 py-3.5 rounded-xl bg-gradient-to-r from-amber-500 via-royal-gold to-yellow-600 text-slate-950 font-black text-sm flex items-center justify-center gap-3">
+                        <i class="fa-solid fa-trophy text-xs"></i>
+                        <span>Browse Tournaments</span>
+                    </a>
+                    <a href="#shop" class="btn-3d w-full sm:w-auto px-8 py-3.5 rounded-xl bg-slate-900 border border-slate-700/80 text-white font-semibold text-sm flex items-center justify-center gap-3 hover:bg-slate-800">
+                        <i class="fa-solid fa-wand-magic-sparkles text-xs text-royal-cyan"></i>
+                        <span>Shop Anime & Gear</span>
+                    </a>
+                </div>
+
+                <!-- Stats Highlights -->
+                <div class="pt-6 grid grid-cols-3 gap-4 border-t border-slate-800/80 max-w-lg mx-auto lg:mx-0">
+                    <div>
+                        <div class="text-2xl font-black text-white">$15,000+</div>
+                        <div class="text-xs text-slate-400 mt-0.5">Monthly Prize Pools</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-black text-white">50k+</div>
+                        <div class="text-xs text-slate-400 mt-0.5">Anime Stickers Sold</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-black text-white">Instant</div>
+                        <div class="text-xs text-slate-400 mt-0.5">Automated Bracket</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Hero 3D Interactive Showpiece -->
+            <div class="lg:col-span-5 perspective-1000 flex justify-center">
+                <div id="heroCard" class="tilt-card w-full max-w-md glass-panel rounded-3xl p-6 relative border border-white/15 animate-float shadow-2xl">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-royal-accent via-royal-cyan to-royal-gold rounded-3xl opacity-30 blur-xl -z-10 animate-pulse-glow"></div>
+
+                    <!-- Showpiece Header -->
+                    <div class="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
+                        <div class="flex items-center gap-3">
+                            <div class="icon-3d w-11 h-11 rounded-xl bg-purple-950 border border-purple-500/50 flex items-center justify-center text-royal-gold text-xl">
+                                <i class="fa-solid fa-gamepad"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-white text-sm">Monarch Pass #808</h3>
+                                <p class="text-xs text-slate-400">Pro Gamer & VIP Collector</p>
+                            </div>
+                        </div>
+                        <span class="px-2.5 py-1 rounded-full bg-amber-500/10 text-royal-gold border border-amber-500/30 text-xs font-bold">VIP Tier</span>
+                    </div>
+
+                    <!-- Holographic Graphic Showcase -->
+                    <div class="relative h-48 rounded-2xl bg-gradient-to-b from-slate-950 via-slate-900 to-purple-950/40 border border-slate-800 flex items-center justify-center overflow-hidden">
+                        <div class="absolute inset-0 bg-[linear-gradient(to_right,#1f2937_1px,transparent_1px),linear-gradient(to_bottom,#1f2937_1px,transparent_1px)] bg-[size:1.5rem_1.5rem] opacity-30"></div>
+                        
+                        <div class="relative z-10 flex flex-col items-center gap-2">
+                            <div class="w-20 h-20 rounded-2xl bg-gradient-to-tr from-purple-600 via-pink-500 to-amber-400 p-[2px] shadow-2xl shadow-purple-500/50 preserve-3d animate-spin-slow">
+                                <div class="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center">
+                                    <i class="fa-solid fa-dragon text-3xl text-royal-cyan"></i>
+                                </div>
+                            </div>
+                            <span class="text-xs font-extrabold tracking-wider text-royal-gold uppercase">Gojo Holographic Sticker</span>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 flex justify-between items-center text-xs text-slate-300 font-semibold">
+                        <span>Tournament Registration</span>
+                        <span class="text-emerald-400 font-mono"><i class="fa-solid fa-circle text-[8px] mr-1"></i>OPEN NOW</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tournaments" class="py-16 border-t border-slate-800/60">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+                <div>
+                    <h2 class="text-xs uppercase tracking-widest font-extrabold text-royal-gold mb-2"><i class="fa-solid fa-trophy mr-1"></i> Esports Battlegrounds</h2>
+                    <p class="text-3xl sm:text-4xl font-extrabold text-white">Live & Upcoming Tournaments</p>
+                </div>
+
+                <!-- Tournament Status Filter Buttons -->
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="filterTournaments('all', this)" class="tourney-btn active px-3.5 py-1.5 rounded-xl bg-royal-accent text-white text-xs font-bold transition-all">All Arenas</button>
+                    <button onclick="filterTournaments('live', this)" class="tourney-btn px-3.5 py-1.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 text-xs font-semibold hover:border-slate-700 transition-all">● Live Now</button>
+                    <button onclick="filterTournaments('upcoming', this)" class="tourney-btn px-3.5 py-1.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 text-xs font-semibold hover:border-slate-700 transition-all">Registration Open</button>
+                </div>
+            </div>
+
+            <!-- Tournaments Grid -->
+            <div id="tournamentsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 perspective-1000">
+                <!-- JS Dynamically Loads Tournaments -->
+            </div>
+        </section>
+
+        <section id="shop" class="py-16 border-t border-slate-800/60">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+                <div>
+                    <h2 class="text-xs uppercase tracking-widest font-extrabold text-royal-cyan mb-2"><i class="fa-solid fa-store mr-1"></i> Monarch Vault</h2>
+                    <p class="text-3xl sm:text-4xl font-extrabold text-white">Gaming Gear & Anime Stickers</p>
+                </div>
+
+                <!-- Product Category Filter -->
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="filterShop('all', this)" class="shop-btn active px-3.5 py-1.5 rounded-xl bg-royal-accent text-white text-xs font-bold transition-all">All Items</button>
+                    <button onclick="filterShop('stickers', this)" class="shop-btn px-3.5 py-1.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 text-xs font-semibold hover:border-slate-700 transition-all">Anime Stickers</button>
+                    <button onclick="filterShop('gear', this)" class="shop-btn px-3.5 py-1.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 text-xs font-semibold hover:border-slate-700 transition-all">Gaming Accessories</button>
+                    <button onclick="filterShop('custom', this)" class="shop-btn px-3.5 py-1.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 text-xs font-semibold hover:border-slate-700 transition-all">Deskpads & Signs</button>
+                </div>
+            </div>
+
+            <!-- Search Active Indicator -->
+            <div id="searchStatus" class="hidden mb-6 p-3 rounded-xl bg-purple-950/80 border border-purple-500/40 flex items-center justify-between text-xs text-purple-200">
+                <span>Displaying search matches for: <strong id="searchQueryTerm" class="text-royal-gold"></strong></span>
+                <button onclick="clearSearch()" class="text-royal-cyan underline font-semibold hover:text-white">Clear Search Query</button>
+            </div>
+
+            <!-- Shop Grid -->
+            <div id="shopGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 perspective-1000">
+                <!-- JS Dynamically Loads Products -->
+            </div>
+
+            <!-- No Search Results Found -->
+            <div id="noResults" class="hidden py-16 text-center space-y-4">
+                <div class="w-16 h-16 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-500 text-2xl mx-auto">
+                    <i class="fa-solid fa-ghost"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white">No Items or Tournaments Matched</h3>
+                <p class="text-slate-400 text-xs max-w-sm mx-auto">Try searching terms like "Valorant", "Gojo", "Sticker", "Mouse", "Tekken", or "Keycap".</p>
+                <button onclick="clearSearch()" class="px-4 py-2 rounded-xl bg-royal-accent text-white text-xs font-semibold">Reset Search</button>
+            </div>
+        </section>
+
+        <section id="membership" class="py-16 border-t border-slate-800/60">
+            <div class="text-center max-w-3xl mx-auto mb-12 space-y-3">
+                <h2 class="text-xs uppercase tracking-widest font-extrabold text-royal-gold"><i class="fa-solid fa-crown mr-1"></i> VIP Passes</h2>
+                <p class="text-3xl sm:text-4xl font-extrabold text-white">Unlock Royal Monarch Perks</p>
+                <p class="text-slate-400 text-xs">Get free tournament entry fees, monthly anime sticker boxes, and store discounts.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 perspective-1000">
+                <!-- Free Tier -->
+                <div class="tilt-card glass-panel rounded-3xl p-6 border border-slate-800 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-sm font-bold text-slate-300">Casual Monarch</span>
+                            <span class="px-2.5 py-0.5 rounded-full bg-slate-800 text-slate-400 text-[10px] font-bold">STARTER</span>
+                        </div>
+                        <div class="text-3xl font-black text-white mb-4">$0 <span class="text-xs font-normal text-slate-400">/ forever</span></div>
+                        <ul class="space-y-3 text-xs text-slate-300 mb-6">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Access to community tournaments</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Standard merchandise store access</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Basic Discord community role</li>
+                        </ul>
+                    </div>
+                    <button onclick="triggerToast('Joined as Casual Monarch!')" class="w-full py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-slate-200 text-xs font-semibold hover:bg-slate-800">
+                        Get Started
+                    </button>
+                </div>
+
+                <!-- Pro Gamer Tier -->
+                <div class="tilt-card glass-panel rounded-3xl p-6 border-2 border-royal-accent relative shadow-2xl shadow-purple-900/40 flex flex-col justify-between">
+                    <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 px-3 py-1 rounded-full bg-gradient-to-r from-royal-accent to-royal-cyan text-white text-[10px] font-black uppercase tracking-wider shadow-lg">
+                        Most Popular
+                    </div>
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-sm font-bold text-white">Pro Gamer Pass</span>
+                            <span class="px-2.5 py-0.5 rounded-full bg-purple-900/60 text-purple-300 text-[10px] font-bold">RECOMMENDED</span>
+                        </div>
+                        <div class="text-3xl font-black text-white mb-4">$9.99 <span class="text-xs font-normal text-slate-400">/ month</span></div>
+                        <ul class="space-y-3 text-xs text-slate-200 mb-6">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-royal-cyan"></i> Priority slot in all Esports Tournaments</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-royal-cyan"></i> 15% OFF all Anime Stickers & Gear</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-royal-cyan"></i> Free Monthly Anime Sticker Pack</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-royal-cyan"></i> Pro Gamer Discord Badge</li>
+                        </ul>
+                    </div>
+                    <button onclick="triggerToast('Upgraded to Pro Gamer Pass!')" class="btn-3d w-full py-3 rounded-xl bg-gradient-to-r from-royal-accent to-indigo-600 text-white text-xs font-bold">
+                        Upgrade To Pro
+                    </button>
+                </div>
+
+                <!-- VIP Monarch Tier -->
+                <div class="tilt-card glass-panel rounded-3xl p-6 border border-amber-500/40 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-sm font-bold text-royal-gold">Royal VIP Monarch</span>
+                            <span class="px-2.5 py-0.5 rounded-full bg-amber-500/20 text-royal-gold text-[10px] font-bold">ULTIMATE</span>
+                        </div>
+                        <div class="text-3xl font-black text-white mb-4">$24.99 <span class="text-xs font-normal text-slate-400">/ month</span></div>
+                        <ul class="space-y-3 text-xs text-slate-200 mb-6">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-royal-gold"></i> FREE Entry to ALL Cash Prize Arenas</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-royal-gold"></i> 25% OFF Storewide + Custom Orders</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-royal-gold"></i> Monthly Mystery Gaming & Sticker Box</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-royal-gold"></i> VIP Royal Crown Badge & Direct Support</li>
+                        </ul>
+                    </div>
+                    <button onclick="triggerToast('Welcome to Royal VIP Monarch status!')" class="btn-3d-gold w-full py-3 rounded-xl bg-gradient-to-r from-amber-500 to-royal-gold text-slate-950 text-xs font-black">
+                        Claim Royal VIP
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- AUTH MODAL -->
+    <div id="authModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
+        <div class="glass-panel w-full max-w-md rounded-3xl p-6 border border-white/15 relative shadow-2xl animate-float">
+            <button onclick="closeAuthModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-sm">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <!-- Modal Header Tabs -->
+            <div class="flex border-b border-slate-800 mb-6">
+                <button id="tabLogin" onclick="switchAuthTab('login')" class="flex-1 py-2 font-bold text-sm text-royal-gold border-b-2 border-royal-gold">Sign In</button>
+                <button id="tabRegister" onclick="switchAuthTab('register')" class="flex-1 py-2 font-bold text-sm text-slate-400 border-b-2 border-transparent">Register</button>
+            </div>
+
+            <!-- Login Form -->
+            <form id="formLogin" onsubmit="handleAuthSubmit(event, 'login')" class="space-y-4">
+                <div>
+                    <label class="text-xs text-slate-300 font-semibold mb-1 block">Username or Gaming Tag</label>
+                    <input type="text" id="loginUsername" required placeholder="MonarchGamer#101" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-xs text-white focus:outline-none focus:border-royal-accent">
+                </div>
+                <div>
+                    <label class="text-xs text-slate-300 font-semibold mb-1 block">Password</label>
+                    <input type="password" required placeholder="••••••••" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-xs text-white focus:outline-none focus:border-royal-accent">
+                </div>
+                <button type="submit" class="btn-3d-gold w-full py-3 rounded-xl bg-gradient-to-r from-amber-500 to-royal-gold text-slate-950 text-xs font-black">
+                    Log In to Monarch
+                </button>
+            </form>
+
+            <!-- Register Form -->
+            <form id="formRegister" onsubmit="handleAuthSubmit(event, 'register')" class="hidden space-y-4">
+                <div>
+                    <label class="text-xs text-slate-300 font-semibold mb-1 block">Monarch Gamer Tag</label>
+                    <input type="text" id="regUsername" required placeholder="ShadowMonarch" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-xs text-white focus:outline-none focus:border-royal-accent">
+                </div>
+                <div>
+                    <label class="text-xs text-slate-300 font-semibold mb-1 block">Email Address</label>
+                    <input type="email" required placeholder="gamer@lazymonarch.com" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-xs text-white focus:outline-none focus:border-royal-accent">
+                </div>
+                <div>
+                    <label class="text-xs text-slate-300 font-semibold mb-1 block">Password</label>
+                    <input type="password" required placeholder="••••••••" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-xs text-white focus:outline-none focus:border-royal-accent">
+                </div>
+                <button type="submit" class="btn-3d w-full py-3 rounded-xl bg-gradient-to-r from-royal-accent to-indigo-600 text-white text-xs font-bold">
+                    Create Account
+                </button>
+            </form>
+
+            <!-- Social Logins -->
+            <div class="mt-6 pt-4 border-t border-slate-800 text-center">
+                <p class="text-[10px] uppercase font-bold text-slate-400 mb-3">Or Connect With</p>
+                <div class="flex justify-center gap-3">
+                    <button onclick="demoSocialLogin('Discord')" class="w-10 h-10 rounded-xl bg-indigo-950 border border-indigo-500/40 text-indigo-400 flex items-center justify-center hover:scale-105 transition-transform">
+                        <i class="fa-brands fa-discord"></i>
+                    </button>
+                    <button onclick="demoSocialLogin('Steam')" class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-700 text-slate-300 flex items-center justify-center hover:scale-105 transition-transform">
+                        <i class="fa-brands fa-steam"></i>
+                    </button>
+                    <button onclick="demoSocialLogin('Google')" class="w-10 h-10 rounded-xl bg-red-950 border border-red-500/40 text-red-400 flex items-center justify-center hover:scale-105 transition-transform">
+                        <i class="fa-brands fa-google"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CART SLIDE-OVER DRAWER -->
+    <div id="cartDrawer" class="fixed inset-0 z-50 pointer-events-none transition-opacity duration-300 opacity-0">
+        <div onclick="toggleCartDrawer()" class="absolute inset-0 bg-slate-950/70 backdrop-blur-sm"></div>
+        <div id="cartContent" class="absolute top-0 right-0 bottom-0 w-full max-w-md bg-slate-950 border-l border-slate-800 p-6 flex flex-col justify-between transform translate-x-full transition-transform duration-300 pointer-events-auto">
+            <div>
+                <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-cart-shopping text-royal-cyan"></i>
+                        <h3 class="font-bold text-white text-base">Your Monarch Vault Cart</h3>
+                    </div>
+                    <button onclick="toggleCartDrawer()" class="text-slate-400 hover:text-white">
+                        <i class="fa-solid fa-xmark text-sm"></i>
+                    </button>
+                </div>
+
+                <div id="cartItemList" class="py-4 space-y-3 max-h-[60vh] overflow-y-auto">
+                    <!-- JS Injects Cart Items -->
+                </div>
+            </div>
+
+            <!-- Cart Footer Total -->
+            <div class="pt-4 border-t border-slate-800 space-y-4">
+                <div class="flex items-center justify-between text-sm">
+                    <span class="text-slate-400">Subtotal:</span>
+                    <span id="cartSubtotal" class="font-black text-white text-lg">$0.00</span>
+                </div>
+                <button onclick="checkoutCart()" class="btn-3d-gold w-full py-3.5 rounded-xl bg-gradient-to-r from-amber-500 to-royal-gold text-slate-950 font-black text-xs uppercase tracking-wider">
+                    Proceed To Checkout
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast" class="fixed top-20 right-5 z-50 transform translate-x-80 opacity-0 transition-all duration-300 glass-panel px-4 py-3 rounded-xl border border-royal-accent/40 text-white text-xs font-semibold flex items-center gap-3 shadow-2xl">
+        <div class="icon-3d w-7 h-7 rounded-lg bg-royal-cyan/20 border border-royal-cyan/40 flex items-center justify-center text-royal-cyan">
+            <i class="fa-solid fa-check text-xs"></i>
+        </div>
+        <span id="toastMsg">Action completed!</span>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="mt-16 border-t border-slate-800/80 bg-slate-950 py-10 text-slate-500 text-xs text-center relative z-10">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-crown text-royal-gold text-base"></i>
+                <span class="text-white font-black text-sm tracking-tight">LAZYMONARCH</span>
+                <span>© 2026 Esports & Anime Merch Realm.</span>
+            </div>
+            <div class="flex gap-6 text-[11px]">
+                <a href="#home" class="hover:text-white transition-colors">Home</a>
+                <a href="#tournaments" class="hover:text-white transition-colors">Tournaments</a>
+                <a href="#shop" class="hover:text-white transition-colors">Anime Shop</a>
+                <a href="#membership" class="hover:text-white transition-colors">VIP Pass</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        /* DATABASE: Gaming Tournaments & Anime Merch Items */
+        const TOURNAMENTS = [
+            {
+                id: 't1',
+                type: 'tournament',
+                name: "Valorant Monarch Championship",
+                category: "live",
+                prize: "$5,000 USD",
+                teams: "64/64 Teams",
+                gameIcon: "fa-crosshairs",
+                iconBg: "bg-red-950 border-red-500/50 text-red-400",
+                badge: "LIVE NOW",
+                badgeBg: "bg-red-500/20 text-red-400 border-red-500/40",
+                desc: "Official 5v5 tactical shooter arena. Watch stream or track live bracket scores."
+            },
+            {
+                id: 't2',
+                type: 'tournament',
+                name: "BGMI / PUBG Survival Royal",
+                category: "upcoming",
+                prize: "$3,000 USD",
+                teams: "32 Squad Slots Left",
+                gameIcon: "fa-shield-halved",
+                iconBg: "bg-amber-950 border-amber-500/50 text-royal-gold",
+                badge: "REGISTRATION OPEN",
+                badgeBg: "bg-amber-500/20 text-royal-gold border-amber-500/40",
+                desc: "Squad battle royale showdown on Miramar & Erangel. Cash rewards for top 5 squads."
+            },
+            {
+                id: 't3',
+                type: 'tournament',
+                name: "Tekken 8 Anime Showdown",
+                category: "upcoming",
+                prize: "$1,500 USD",
+                teams: "128 Players Max",
+                gameIcon: "fa-hand-fist",
+                iconBg: "bg-purple-950 border-purple-500/50 text-purple-400",
+                badge: "REGISTRATION OPEN",
+                badgeBg: "bg-purple-500/20 text-purple-300 border-purple-500/40",
+                desc: "Double elimination 1v1 fighting game tournament. Custom anime trophy for 1st place."
+            }
+        ];
+
+        const PRODUCTS = [
+            {
+                id: 'p1',
+                type: 'product',
+                name: "Gojo Satoru Holographic Sticker Pack",
+                category: "stickers",
+                price: 14.99,
+                displayPrice: "$14.99",
+                rating: "5.0",
+                icon: "fa-dragon",
+                iconBg: "bg-cyan-950 border-cyan-500/50 text-royal-cyan",
+                badge: "Anime Vinyl",
+                desc: "Waterproof, UV-resistant 3D holographic Jujutsu Kaisen anime stickers for laptops & cars."
+            },
+            {
+                id: 'p2',
+                type: 'product',
+                name: "Cyberpunk RGB Keycaps Set",
+                category: "gear",
+                price: 39.99,
+                displayPrice: "$39.99",
+                rating: "4.9",
+                icon: "fa-keyboard",
+                iconBg: "bg-purple-950 border-purple-500/50 text-purple-400",
+                badge: "Gaming Gear",
+                desc: "Custom PBT double-shot keycaps with Japanese kanji side-engravings."
+            },
+            {
+                id: 'p3',
+                type: 'product',
+                name: "Solo Leveling Desk Pad XXL",
+                category: "custom",
+                price: 29.99,
+                displayPrice: "$29.99",
+                rating: "4.8",
+                icon: "fa-mattress-pillow",
+                iconBg: "bg-indigo-950 border-indigo-500/50 text-indigo-400",
+                badge: "Despad",
+                desc: "Stitched edge ultra-smooth gaming mouse mat featuring Sung Jinwoo Shadow Army art."
+            },
+            {
+                id: 'p4',
+                type: 'product',
+                name: "Wireless Esports Gaming Mouse",
+                category: "gear",
+                price: 59.99,
+                displayPrice: "$59.99",
+                rating: "4.9",
+                icon: "fa-computer-mouse",
+                iconBg: "bg-emerald-950 border-emerald-500/50 text-emerald-400",
+                badge: "Hardware",
+                desc: "Ultra-lightweight 49g wireless mouse with 26K DPI optical sensor & zero latency."
+            },
+            {
+                id: 'p5',
+                type: 'product',
+                name: "Evangelion Unit-01 LED Acrylic Sign",
+                category: "custom",
+                price: 44.99,
+                displayPrice: "$44.99",
+                rating: "5.0",
+                icon: "fa-lightbulb",
+                iconBg: "bg-pink-950 border-pink-500/50 text-royal-pink",
+                badge: "Neon Sign",
+                desc: "RGB touch-controlled 3D illusion LED light lamp for gaming setups."
+            },
+            {
+                id: 'p6',
+                type: 'product',
+                name: "Attack on Titan Vinyl Decal Pack",
+                category: "stickers",
+                price: 12.99,
+                displayPrice: "$12.99",
+                rating: "4.7",
+                icon: "fa-shield-cat",
+                iconBg: "bg-amber-950 border-amber-500/50 text-royal-gold",
+                badge: "Anime Vinyl",
+                desc: "15-piece Survey Corps scout crest & titan decal bundle."
+            }
+        ];
+
+        /* STATE VARIABLES */
+        let cart = [];
+        let currentUser = null;
+        let currentTournamentFilter = 'all';
+        let currentShopFilter = 'all';
+
+        /* RENDER TOURNAMENTS */
+        function renderTournaments(items) {
+            const grid = document.getElementById('tournamentsGrid');
+            grid.innerHTML = items.map(t => `
+                <div class="tilt-card icon-3d-hover glass-panel rounded-2xl p-5 border border-white/10 flex flex-col justify-between group hover:border-royal-gold/50 transition-all">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="icon-3d w-12 h-12 rounded-2xl ${t.iconBg} flex items-center justify-center text-xl">
+                                <i class="fa-solid ${t.gameIcon}"></i>
+                            </div>
+                            <span class="px-2.5 py-1 rounded-full border ${t.badgeBg} text-[10px] font-extrabold tracking-wider">${t.badge}</span>
+                        </div>
+                        <h3 class="text-base font-bold text-white mb-1 group-hover:text-royal-gold transition-colors">${t.name}</h3>
+                        <p class="text-slate-400 text-xs mb-4 leading-relaxed">${t.desc}</p>
+                    </div>
+
+                    <div class="pt-4 border-t border-slate-800/80 flex items-center justify-between">
+                        <div>
+                            <div class="text-[10px] text-slate-400 uppercase font-bold">Prize Pool</div>
+                            <div class="text-base font-black text-royal-gold">${t.prize}</div>
+                        </div>
+                        <button onclick="registerTournament('${t.name}')" class="btn-3d-gold px-3.5 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-royal-gold text-slate-950 font-black text-xs flex items-center gap-2">
+                            <i class="fa-solid fa-gamepad"></i>
+                            <span>Register Squad</span>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        /* RENDER SHOP PRODUCTS */
+        function renderShop(items) {
+            const grid = document.getElementById('shopGrid');
+            const noResults = document.getElementById('noResults');
+
+            if (!items || items.length === 0) {
+                grid.innerHTML = '';
+                noResults.classList.remove('hidden');
+                return;
+            }
+
+            noResults.classList.add('hidden');
+            grid.innerHTML = items.map(p => `
+                <div class="tilt-card icon-3d-hover glass-panel rounded-2xl p-5 border border-white/10 flex flex-col justify-between group hover:border-royal-cyan/50 transition-all">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="icon-3d w-12 h-12 rounded-2xl ${p.iconBg} flex items-center justify-center text-xl">
+                                <i class="fa-solid ${p.icon}"></i>
+                            </div>
+                            <span class="px-2.5 py-1 rounded-full bg-slate-900 border border-slate-700 text-slate-300 text-[10px] font-bold uppercase tracking-wider">${p.badge}</span>
+                        </div>
+                        <h3 class="text-base font-bold text-white mb-1 group-hover:text-royal-cyan transition-colors">${p.name}</h3>
+                        <p class="text-slate-400 text-xs mb-4 line-clamp-2">${p.desc}</p>
+                    </div>
+
+                    <div class="pt-4 border-t border-slate-800/80 flex items-center justify-between">
+                        <div>
+                            <div class="text-xs text-slate-400 font-medium">Price</div>
+                            <div class="text-lg font-black text-white">${p.displayPrice}</div>
+                        </div>
+                        <button onclick="addToCart('${p.id}')" class="btn-3d px-3.5 py-2 rounded-xl bg-gradient-to-r from-royal-accent to-indigo-600 text-white font-bold text-xs flex items-center gap-2">
+                            <i class="fa-solid fa-cart-plus text-xs"></i>
+                            <span>Add To Cart</span>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        /* CLIENT-SIDE UNIFIED SEARCH (Tournaments & Products) */
+        function handleSearch(query) {
+            const cleanQuery = query.toLowerCase().trim();
+            const desktopInput = document.getElementById('desktopSearchInput');
+            const mobileInput = document.getElementById('mobileSearchInput');
+            const clearBtn = document.getElementById('clearSearchBtn');
+            const mobClearBtn = document.getElementById('mobileClearSearchBtn');
+            const dropdown = document.getElementById('searchDropdown');
+            const searchResultsList = document.getElementById('searchResultsList');
+            const searchResultCount = document.getElementById('searchResultCount');
+            const searchStatus = document.getElementById('searchStatus');
+            const searchQueryTerm = document.getElementById('searchQueryTerm');
+
+            if (document.activeElement === desktopInput) mobileInput.value = query;
+            if (document.activeElement === mobileInput) desktopInput.value = query;
+
+            if (cleanQuery !== '') {
+                clearBtn.classList.remove('hidden');
+                if (mobClearBtn) mobClearBtn.classList.remove('hidden');
+
+                // Search across both Tournaments and Products
+                const matchedTournaments = TOURNAMENTS.filter(t => 
+                    t.name.toLowerCase().includes(cleanQuery) || 
+                    t.desc.toLowerCase().includes(cleanQuery)
+                );
+                const matchedProducts = PRODUCTS.filter(p => 
+                    p.name.toLowerCase().includes(cleanQuery) || 
+                    p.desc.toLowerCase().includes(cleanQuery) ||
+                    p.badge.toLowerCase().includes(cleanQuery)
+                );
+
+                const totalMatched = matchedTournaments.length + matchedProducts.length;
+                searchResultCount.innerText = `${totalMatched} found`;
+
+                // Update Main Product Section with Search Results
+                renderShop(matchedProducts);
+                renderTournaments(matchedTournaments);
+
+                searchStatus.classList.remove('hidden');
+                searchQueryTerm.innerText = `"${query}"`;
+
+                // Dropdown Overlay Display
+                if (totalMatched > 0) {
+                    let dropdownHTML = '';
+                    
+                    matchedTournaments.forEach(t => {
+                        dropdownHTML += `
+                            <div onclick="scrollToSection('tournaments')" class="p-2 rounded-xl hover:bg-slate-800/80 cursor-pointer flex items-center justify-between gap-2 border border-transparent hover:border-amber-500/40">
+                                <div class="flex items-center gap-2.5">
+                                    <div class="w-7 h-7 rounded-lg ${t.iconBg} flex items-center justify-center text-xs">
+                                        <i class="fa-solid ${t.gameIcon}"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-xs font-bold text-white">${t.name}</div>
+                                        <div class="text-[10px] text-royal-gold font-semibold">[TOURNAMENT] ${t.prize}</div>
+                                    </div>
+                                </div>
+                                <i class="fa-solid fa-arrow-right text-[10px] text-royal-gold"></i>
+                            </div>
+                        `;
+                    });
+
+                    matchedProducts.forEach(p => {
+                        dropdownHTML += `
+                            <div onclick="scrollToSection('shop')" class="p-2 rounded-xl hover:bg-slate-800/80 cursor-pointer flex items-center justify-between gap-2 border border-transparent hover:border-royal-cyan/40">
+                                <div class="flex items-center gap-2.5">
+                                    <div class="w-7 h-7 rounded-lg ${p.iconBg} flex items-center justify-center text-xs">
+                                        <i class="fa-solid ${p.icon}"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-xs font-bold text-white">${p.name}</div>
+                                        <div class="text-[10px] text-royal-cyan font-semibold">[SHOP] ${p.displayPrice}</div>
+                                    </div>
+                                </div>
+                                <i class="fa-solid fa-arrow-right text-[10px] text-royal-cyan"></i>
+                            </div>
+                        `;
+                    });
+
+                    searchResultsList.innerHTML = dropdownHTML;
+                    dropdown.classList.remove('hidden');
+                } else {
+                    searchResultsList.innerHTML = `<div class="p-3 text-center text-xs text-slate-400">No items or arenas matched</div>`;
+                    dropdown.classList.remove('hidden');
+                }
+            } else {
+                clearSearch();
+            }
+        }
+
+        function scrollToSection(id) {
+            document.getElementById('searchDropdown').classList.add('hidden');
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function clearSearch() {
+            document.getElementById('desktopSearchInput').value = '';
+            document.getElementById('mobileSearchInput').value = '';
+            document.getElementById('clearSearchBtn').classList.add('hidden');
+            const mobClearBtn = document.getElementById('mobileClearSearchBtn');
+            if (mobClearBtn) mobClearBtn.classList.add('hidden');
+
+            document.getElementById('searchDropdown').classList.add('hidden');
+            document.getElementById('searchStatus').classList.add('hidden');
+            
+            filterTournaments(currentTournamentFilter);
+            filterShop(currentShopFilter);
+        }
+
+        /* TOURNAMENT & SHOP CATEGORY FILTERS */
+        function filterTournaments(cat, btn) {
+            currentTournamentFilter = cat;
+            if (btn) {
+                document.querySelectorAll('.tourney-btn').forEach(b => {
+                    b.classList.remove('bg-royal-accent', 'text-white');
+                    b.classList.add('bg-slate-900', 'text-slate-300');
+                });
+                btn.classList.remove('bg-slate-900', 'text-slate-300');
+                btn.classList.add('bg-royal-accent', 'text-white');
+            }
+            if (cat === 'all') renderTournaments(TOURNAMENTS);
+            else renderTournaments(TOURNAMENTS.filter(t => t.category === cat));
+        }
+
+        function filterShop(cat, btn) {
+            currentShopFilter = cat;
+            if (btn) {
+                document.querySelectorAll('.shop-btn').forEach(b => {
+                    b.classList.remove('bg-royal-accent', 'text-white');
+                    b.classList.add('bg-slate-900', 'text-slate-300');
+                });
+                btn.classList.remove('bg-slate-900', 'text-slate-300');
+                btn.classList.add('bg-royal-accent', 'text-white');
+            }
+            if (cat === 'all') renderShop(PRODUCTS);
+            else renderShop(PRODUCTS.filter(p => p.category === cat));
+        }
+
+        /* CART MANAGEMENT */
+        function addToCart(productId) {
+            const item = PRODUCTS.find(p => p.id === productId);
+            if (!item) return;
+
+            const existing = cart.find(c => c.id === productId);
+            if (existing) {
+                existing.qty += 1;
+            } else {
+                cart.push({ ...item, qty: 1 });
+            }
+
+            updateCartUI();
+            triggerToast(`Added "${item.name}" to cart!`);
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(c => c.id !== productId);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
+            document.getElementById('cartBadge').innerText = totalCount;
+            const mobileDockBadge = document.getElementById('mobileDockCartBadge');
+            if (mobileDockBadge) mobileDockBadge.innerText = totalCount;
+
+            const cartItemList = document.getElementById('cartItemList');
+            let subtotal = 0;
+
+            if (cart.length === 0) {
+                cartItemList.innerHTML = `
+                    <div class="py-8 text-center text-xs text-slate-500">
+                        <i class="fa-solid fa-basket-shopping text-2xl mb-2 block"></i>
+                        Your vault cart is empty
+                    </div>
+                `;
+            } else {
+                cartItemList.innerHTML = cart.map(item => {
+                    subtotal += item.price * item.qty;
+                    return `
+                        <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-900 border border-slate-800">
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 rounded-lg ${item.iconBg} flex items-center justify-center text-xs">
+                                    <i class="fa-solid ${item.icon}"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs font-bold text-white max-w-[170px] truncate">${item.name}</div>
+                                    <div class="text-[10px] text-slate-400">$${item.price} x ${item.qty}</div>
+                                </div>
+                            </div>
+                            <button onclick="removeFromCart('${item.id}')" class="text-slate-500 hover:text-red-400 text-xs p-1">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            document.getElementById('cartSubtotal').innerText = `$${subtotal.toFixed(2)}`;
+        }
+
+        function toggleCartDrawer() {
+            const drawer = document.getElementById('cartDrawer');
+            const content = document.getElementById('cartContent');
+
+            if (drawer.classList.contains('pointer-events-none')) {
+                drawer.classList.remove('pointer-events-none', 'opacity-0');
+                drawer.classList.add('opacity-100');
+                content.classList.remove('translate-x-full');
+            } else {
+                drawer.classList.add('pointer-events-none', 'opacity-0');
+                drawer.classList.remove('opacity-100');
+                content.classList.add('translate-x-full');
+            }
+        }
+
+        function checkoutCart() {
+            if (cart.length === 0) {
+                triggerToast('Your cart is empty!');
+                return;
+            }
+            triggerToast('Redirecting to Secure Monarch Payment Gateway...');
+            cart = [];
+            updateCartUI();
+            toggleCartDrawer();
+        }
+
+        /* AUTH & LOGIN SYSTEM */
+        function openAuthModal(tab = 'login') {
+            document.getElementById('authModal').classList.remove('hidden');
+            switchAuthTab(tab);
+        }
+
+        function closeAuthModal() {
+            document.getElementById('authModal').classList.add('hidden');
+        }
+
+        function switchAuthTab(tab) {
+            const tabLogin = document.getElementById('tabLogin');
+            const tabRegister = document.getElementById('tabRegister');
+            const formLogin = document.getElementById('formLogin');
+            const formRegister = document.getElementById('formRegister');
+
+            if (tab === 'login') {
+                tabLogin.className = 'flex-1 py-2 font-bold text-sm text-royal-gold border-b-2 border-royal-gold';
+                tabRegister.className = 'flex-1 py-2 font-bold text-sm text-slate-400 border-b-2 border-transparent';
+                formLogin.classList.remove('hidden');
+                formRegister.classList.add('hidden');
+            } else {
+                tabRegister.className = 'flex-1 py-2 font-bold text-sm text-royal-gold border-b-2 border-royal-gold';
+                tabLogin.className = 'flex-1 py-2 font-bold text-sm text-slate-400 border-b-2 border-transparent';
+                formRegister.classList.remove('hidden');
+                formLogin.classList.add('hidden');
+            }
+        }
+
+        function handleAuthSubmit(e, type) {
+            e.preventDefault();
+            const username = type === 'login' 
+                ? document.getElementById('loginUsername').value 
+                : document.getElementById('regUsername').value;
+
+            currentUser = username || 'MonarchGamer';
+            updateAuthUI();
+            closeAuthModal();
+            triggerToast(`Welcome back, ${currentUser}!`);
+        }
+
+        function demoSocialLogin(provider) {
+            currentUser = `Gamer_${provider}`;
+            updateAuthUI();
+            closeAuthModal();
+            triggerToast(`Logged in via ${provider}`);
+        }
+
+        function updateAuthUI() {
+            const container = document.getElementById('authBtnContainer');
+            const mobileTopUserText = document.getElementById('mobileTopUserText');
+
+            if (currentUser) {
+                container.innerHTML = `
+                    <div class="flex items-center gap-2">
+                        <div class="w-9 h-9 rounded-xl bg-purple-900 border border-purple-500/50 flex items-center justify-center text-royal-gold font-black text-xs">
+                            ${currentUser.charAt(0).toUpperCase()}
+                        </div>
+                        <div class="text-left hidden lg:block">
+                            <div class="text-xs font-bold text-white leading-none">${currentUser}</div>
+                            <div class="text-[9px] text-royal-gold font-semibold leading-tight">Pro Monarch</div>
+                        </div>
+                    </div>
+                `;
+                if (mobileTopUserText) mobileTopUserText.innerText = currentUser.substring(0, 8);
+            }
+        }
+
+        function registerTournament(tourneyName) {
+            if (!currentUser) {
+                openAuthModal('login');
+                triggerToast('Please Sign In to register squad!');
+            } else {
+                triggerToast(`Squad registered for ${tourneyName}!`);
+            }
+        }
+
+        function setActiveMobile(element) {
+            document.querySelectorAll('.mobile-nav-item').forEach(item => {
+                item.classList.remove('active');
+                const wrapper = item.querySelector('.mobile-icon-wrapper');
+                if(wrapper) {
+                    wrapper.classList.remove('bg-gradient-to-tr', 'from-purple-600', 'to-royal-cyan', 'text-white');
+                    wrapper.classList.add('bg-slate-800/90', 'text-slate-400');
+                }
+            });
+            element.classList.add('active');
+        }
+
+        function triggerToast(msg) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toastMsg');
+            toastMsg.innerText = msg;
+            toast.classList.remove('translate-x-80', 'opacity-0');
+            toast.classList.add('translate-x-0', 'opacity-100');
+            setTimeout(() => {
+                toast.classList.add('translate-x-80', 'opacity-0');
+                toast.classList.remove('translate-x-0', 'opacity-100');
+            }, 2500);
+        }
+
+        /* 3D TILT EFFECT */
+        document.addEventListener('mousemove', (e) => {
+            document.querySelectorAll('.tilt-card').forEach(card => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                if (x >= 0 && x <= rect.width && y >= 0 && y <= rect.height) {
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const rotateX = ((y - centerY) / centerY) * -8;
+                    const rotateY = ((x - centerX) / centerX) * 8;
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+                } else {
+                    card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+                }
+            });
+        });
+
+        /* CANVAS PARTICLES */
+        const canvas = document.getElementById('bgCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() { this.reset(); }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = (Math.random() - 0.5) * 0.4;
+                this.speedY = (Math.random() - 0.5) * 0.4;
+                this.alpha = Math.random() * 0.5 + 0.1;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.reset();
+            }
+            draw() {
+                ctx.fillStyle = `rgba(124, 58, 237, ${this.alpha})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < 60; i++) particles.push(new Particle());
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animateParticles);
+        }
+
+        document.addEventListener('click', (e) => {
+            const searchDropdown = document.getElementById('searchDropdown');
+            const desktopSearchInput = document.getElementById('desktopSearchInput');
+            if (desktopSearchInput && !desktopSearchInput.contains(e.target) && !searchDropdown.contains(e.target)) {
+                searchDropdown.classList.add('hidden');
+            }
+        });
+
+        window.onload = function() {
+            animateParticles();
+            renderTournaments(TOURNAMENTS);
+            renderShop(PRODUCTS);
+            updateCartUI();
+        };
+    </script>
+</body>
+</html>
